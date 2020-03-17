@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sjw.dao.FmoneyDao">
+	
+	<!-- 查询 -->
+	<select id="select" resultType="Fmoney">
+		select * from fmoney
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+			<if test="type!=null and type!=''">
+				and type like concat('%',#{type},'%')
+			</if>
+			<if test="jname!=null and jname!=''">
+				and jname like concat('%',#{jname},'%')
+			</if>
+			<if test="bumen!=null and bumen!=''">
+				and bumen like concat('%',#{bumen},'%')
+			</if>
+			<if test="htdd!=null and htdd!=''">
+				and htdd like concat('%',#{htdd},'%')
+			</if>
+			<if test="gdanwei!=null and gdanwei!=''">
+				and gdanwei like concat('%',#{gdanwei},'%')
+			</if>
+			<if test="gyinhang!=null and gyinhang!=''">
+				and gyinhang like concat('%',#{gyinhang},'%')
+			</if>
+			<if test="zhanghao!=null and zhanghao!=''">
+				and zhanghao like concat('%',#{zhanghao},'%')
+			</if>
+			<if test="jbumen!=null and jbumen!=''">
+				and jbumen like concat('%',#{jbumen},'%')
+			</if>
+			<if test="name!=null and name!=''">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test="shiyou!=null and shiyou!=''">
+				and shiyou like concat('%',#{shiyou},'%')
+			</if>
+			<if test="jine!=null and jine!=''">
+				and jine=#{jine}
+			</if>
+			<if test="beizhu!=null and beizhu!=''">
+				and beizhu like concat('%',#{beizhu},'%')
+			</if>
+			
+			<if test="qtype!=null">
+				and qtype=#{qtype}
+			</if>
+			<if test="date1!=null and date1!=''">
+				and createddate &gt;=#{date1}
+			</if>
+			
+			<if test="date2!=null and date2!=''">
+				and createddate &lt;=#{date2}
+			</if>
+			
+		</where>
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="add">
+		insert into fmoney values(null,#{type},#{date1},#{jname},
+		#{bumen},#{htdd},#{qtype},#{name},#{gdanwei},#{gyinhang},
+		#{zhanghao},#{jbumen},#{shiyou},#{jine},#{fpic},#{beizhu})
+	</insert>
+	
+	<!-- 修改回显 -->
+	<select id="selectOne" resultType="Fmoney">
+		select * from fmoney where id = #{id}
+	</select>
+	
+	<!-- 修改 -->
+	<update id="update">
+		update fmoney set type=#{type},createddate=#{date1},jname=#{jname},
+		bumen=#{bumen},htdd=#{htdd},qtype=#{qtype},name=#{name},gdanwei=#{gdanwei},gyinhang=#{gyinhang},
+		zhanghao=#{zhanghao},jbumen=#{jbumen},shiyou=#{shiyou},jine=#{jine},fpic=#{fpic},beizhu=#{beizhu}
+		where id=#{id}
+	</update>
+	
+	<!-- 查询情况类型 -->
+	<select id="selectq" resultType="Qmoney">
+		select * from qmoney
+	</select>
+	
+</mapper>
